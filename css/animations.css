@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Animations & Transitions - Tanuyomi Website
+   Warm & Gentle Theme
+   ========================================================================== */
+
+/* Keyframe Definitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.04);
+  }
+}
+
+/* Scroll Animation Helper Classes */
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.fade-in-element.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+
+/* Warm Ambient Glow Orbs */
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulseGlow 9s ease-in-out infinite alternate;
+}
+
+.glow-warm {
+  background: radial-gradient(circle, rgba(230, 138, 60, 0.22) 0%, rgba(230, 138, 60, 0) 70%);
+}
+
+.glow-red {
+  background: radial-gradient(circle, rgba(232, 65, 65, 0.16) 0%, rgba(232, 65, 65, 0) 70%);
+}
+
+.glow-green {
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.14) 0%, rgba(52, 211, 153, 0) 70%);
+}
+
+.glow-gold {
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.16) 0%, rgba(251, 191, 36, 0) 70%);
+}
+
+/* Floating Elements */
+.float-element {
+  animation: floatSlow 6s ease-in-out infinite;
+}
