@@ -1,115 +1,111 @@
-# Tanuyomi 公式Webサイト（LP）デプロイ・公開ガイド
+# 🍃 Tanuyomi 公式Webサイト（LP）
 
-本ディレクトリ（`website/`）は、ビルドツール不要の純粋な静的ファイル（HTML5 / CSS / JavaScript / SVGアセット）で構成されています。
-どのホスティングサービス・Webサーバーにも、ファイルをそのままアップロードするだけで即座に公開できます。
+[![Website](https://img.shields.io/badge/Website-Live-brightgreen)](https://nullponta.github.io/tanuyomi-website/)
+[![GitHub Release](https://img.shields.io/github/v/release/nponta/Tanuyomi?include_prereleases&label=Tanuyomi%20Release)](https://github.com/nponta/Tanuyomi/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
----
+電子書籍・動画メディアサーバー **「Tanuyomi（たぬヨミ）」** の公式ランディングページ（Webサイト）用リポジトリです。
 
-## 1. GitHub Pages（完全無料・リポジトリ直結・おすすめ）
-
-GitHub リポジトリをお持ちの場合、完全無料・追加契約なしで超高速CDN付きのWebサイトを公開できます。  
-詳細な手順は [_memo/2026_0904_GitHubPages_and_Releases公開手順書.md](../_memo/2026_0904_GitHubPages_and_Releases公開手順書.md) を参照してください。
-
-### 手順（GitHub Actions 方式）:
-1. リポジトリ設定（**Settings** > **Pages**）を開く。
-2. **Build and deployment** の **Source** を **「GitHub Actions」** に切り替える。
-3. `.github/workflows/deploy-pages.yml`（`path: 'website'` を指定）をコミットして push する。
-4. コミット push に連動して自動的にビルド・デプロイが実行され、`https://<ユーザー名>.github.io/<リポジトリ名>/` で公開されます。
+* **🌐 公式Webサイト**: [https://nullponta.github.io/tanuyomi-website/](https://nullponta.github.io/tanuyomi-website/)
+* **📦 Tanuyomi アプリ本体リポジトリ**: [https://github.com/nponta/Tanuyomi](https://github.com/nponta/Tanuyomi)
 
 ---
 
-## 2. Google Cloud / Firebase Hosting（Googleクレジット活用）
+## 📖 Tanuyomi（たぬヨミ）とは
 
-Google Cloud のクレジットを活用し、超高速CDNと無料SSL（HTTPS）付きで公開する手順です。
+**「開けば、そこにあなたの書斎がある。」**
 
-### 手順:
-1. **Firebase CLI のインストール**:
-   ```bash
-   npm install -g firebase-tools
-   ```
-2. **ログイン**:
-   ```bash
-   firebase login
-   ```
-3. **初期化**:
-   `website/` ディレクトリ内で初期化を実行します。
-   ```bash
-   cd website
-   firebase init hosting
-   ```
-   - 質問 `What do you want to use as your public directory?` には `.`（カレントディレクトリ）を指定。
-   - 質問 `Configure as a single-page app?` には `No` を指定。
-   - 質問 `Set up automatic builds and deploys with GitHub?` には `No`（または必要に応じてYes）。
-4. **デプロイ（公開）**:
-   ```bash
-   firebase deploy --only hosting
-   ```
-   - コマンド完了時に発行される `https://<project-id>.web.app` にて即座に公開されます。
+Tanuyomi は、PC や自宅サーバーに保存してある自炊漫画・書籍（ZIP / CBZ / PDF）や動画ファイルを、同一 Wi-Fi 内のスマートフォン・タブレット・PC のブラウザから超高速・快適に閲覧・ストリーミング再生できる自前ホスト型のメディアサーバーです。
+
+* **⚡ 超高速レスポンス**: Blazor Server + SQLite WAL による軽快な動作とページめくり
+* **📦 ポータブル・導入簡単**: 面倒なインストール不要、ZIP を解凍して実行するだけですぐに利用可能
+* **🔒 安心の自前完結**: クラウドにデータを預けず、自宅のプライベートネットワーク内で安全に完結
 
 ---
 
-## 3. ロリポップ！レンタルサーバー（格安運用・FTPアップロード）
+## 💻 本Webサイトの特徴・技術スタック
 
-月額100〜200円台で維持できるロリポップ等への配置手順です。
+本Webサイトは、フレームワークや重いビルドツール（Node.js / Webpack / Vite など）を一切必要としない、**純粋な静的ファイル（Vanilla Web標準技術）** で構成されています。
 
-### 手順:
-1. **ユーザー専用ページ（管理画面）にログイン**。
-2. **ロリポップ！FTP**（ブラウザ内ファイルマネージャー）を開くか、FTPソフト（FileZilla等）で接続。
-3. 公開フォルダ（`web` やドメイン設定で指定したフォルダ）を開く。
-4. `website/` フォルダ内のすべてのファイル・フォルダ（`index.html`, `css/`, `js/`, `assets/`）をそのままドラッグ＆ドロップでアップロード。
-5. 設定したドメインまたはロリポップ提供URLにアクセスして表示を確認。
-
----
-
-## 4. さくらのレンタルサーバー / VPS
-
-### さくらのレンタルサーバー（共有ホスティング）:
-- ファイルマネージャーまたは FTPS / SFTP にて、`~/www/<公開フォルダ名>/` 配下に `website/` の中身を丸ごとアップロードします。
-
-### さくらのVPS（Linux / Nginx の場合）:
-1. Nginx のドキュメントルート（例: `/var/www/tanuyomi/`）に `website/` 内のファイルを配置（`rsync` または `scp`）。
-   ```bash
-   scp -r website/* user@your-server-ip:/var/www/tanuyomi/
-   ```
-2. Nginx 設定例:
-   ```nginx
-   server {
-       listen 80;
-       server_name your-domain.com;
-       root /var/www/tanuyomi;
-       index index.html;
-
-       location / {
-           try_files $uri $uri/ =404;
-       }
-   }
-   ```
+- **HTML5**: セマンティックマークアップ、構造化データ、SEO・アクセシビリティ対応
+- **Vanilla CSS**: CSS カスタムプロパティ（CSS変数）、グラスモーフィズム、ダークモード基調のモダンUIデザイン
+- **Vanilla JavaScript**: スムーズスクロール、FAQアコーディオン、カルーセルなどの軽量なマイクロインタラクション
+- **SVG & WebP**: 軽量・高精細なベクターアイコンおよび最適化画像
+- **ゼロビルド**: `git clone` して `index.html` をブラウザで開くだけで即座にプレビュー・編集可能
 
 ---
 
-## 5. Cloudflare Pages（完全無料・高信頼CDN）
+## 📁 ディレクトリ構成
 
-1. [Cloudflare Dashboard](https://dash.cloudflare.com/) にログインし、「Compute (Workers & Pages)」→「Pages」を選択。
-2. **直接アップロード**:
-   - `website/` フォルダをそのままドラッグ＆ドロップしてアップロードするだけで即時公開。
-3. **GitHub連携（Privateリポジトリでも可能）**:
-   - リポジトリを連携し、ビルド設定で「Build output directory」を `website` に指定して保存。
+```text
+website/
+├── index.html              # メインページ（ランディングページ）
+├── css/
+│   ├── style.css           # デザイン・レイアウト・タイポグラフィ
+│   └── animations.css      # マイクロアニメーション・キーフレーム
+├── js/
+│   └── main.js             # UI制御（ナビゲーション、FAQ開閉等）
+├── assets/
+│   ├── icons/              # ロゴ、ファビコン（SVG）
+│   └── images/             # スクリーンショット、OGP画像
+└── README.md               # 本ドキュメント
+```
 
 ---
 
-## 6. ローカルでの動作確認方法
+## 🚀 ローカルでのプレビュー方法
 
-ローカルPC上で直接表示を確認したい場合：
+特別なビルド手順はありません。以下のいずれかの方法ですぐに確認できます。
 
-- **ブラウザで直接開く**: `website/index.html` をダブルクリックするだけで閲覧可能。
-- **簡易HTTPサーバーで確認（Python）**:
-  ```bash
-  cd website
-  python -m http.server 8080
-  ```
-  ブラウザで `http://localhost:8080` を開く。
-- **簡易HTTPサーバーで確認（Node.js / npx）**:
-  ```bash
-  cd website
-  npx serve .
-  ```
+### 方法1: ブラウザで直接開く
+`index.html` をダブルクリックしてブラウザで開きます。
+
+### 方法2: 簡易HTTPサーバー（推奨）
+**Python を使う場合:**
+```bash
+python -m http.server 8080
+```
+ブラウザで `http://localhost:8080` を開きます。
+
+**Node.js (npx) を使う場合:**
+```bash
+npx serve .
+```
+
+---
+
+## 🌐 デプロイ・公開方法
+
+本サイトは **GitHub Pages** により自動デプロイ・運用されています。
+
+### 1. GitHub Pages（標準運用）
+- リポジトリの `main` ブランチに push すると、GitHub Pages により自動的に本番サイトへ反映されます。
+- 公開URL: [https://nullponta.github.io/tanuyomi-website/](https://nullponta.github.io/tanuyomi-website/)
+
+### 2. その他のホスティングへの配置
+純粋な静的ファイルのため、あらゆるホスティング環境（Cloudflare Pages、Firebase Hosting、レンタルサーバー等）にファイルをアップロードするだけで公開可能です。
+
+<details>
+<summary>他のホスティング手順（Cloudflare / Firebase / レンタルサーバー等）を展開</summary>
+
+#### Cloudflare Pages
+- ダッシュボードから「直接アップロード」で `website/` フォルダをドラッグ＆ドロップするだけで即時公開。
+
+#### Firebase Hosting
+```bash
+npm install -g firebase-tools
+firebase login
+firebase init hosting   # public directory には「.」を指定
+firebase deploy --only hosting
+```
+
+#### Apache / Nginx / 各種Webサーバー
+- 公開ドキュメントルート（例: `/var/www/html/` や `public_html/`）にファイルを丸ごとアップロード・配置します。
+
+</details>
+
+---
+
+## 📄 ライセンス
+
+本Webサイトのソースコードおよびアセットは [MIT License](LICENSE) のもとで公開されています。
