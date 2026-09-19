@@ -1,13 +1,13 @@
 # 🍃 Tanuyomi 公式Webサイト（LP）
 
 [![Website](https://img.shields.io/badge/Website-Live-brightgreen)](https://nullponta.github.io/tanuyomi-website/)
-[![GitHub Release](https://img.shields.io/github/v/release/nponta/Tanuyomi?include_prereleases&label=Tanuyomi%20Release)](https://github.com/nponta/Tanuyomi/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/nullPonta/tanuyomi-release?include_prereleases&label=Tanuyomi%20Release)](https://github.com/nullPonta/tanuyomi-release/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 電子書籍・動画メディアサーバー **「Tanuyomi（たぬヨミ）」** の公式ランディングページ（Webサイト）用リポジトリです。
 
 * **🌐 公式Webサイト**: [https://nullponta.github.io/tanuyomi-website/](https://nullponta.github.io/tanuyomi-website/)
-* **📦 Tanuyomi アプリ本体リポジトリ**: [https://github.com/nponta/Tanuyomi](https://github.com/nponta/Tanuyomi)
+* **📦 Tanuyomi 配布リポジトリ**: [https://github.com/nullPonta/tanuyomi-release](https://github.com/nullPonta/tanuyomi-release)
 
 ---
 
