@@ -3,6 +3,9 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (window.TanuyomiI18n) {
+    window.TanuyomiI18n.initLanguageSwitcher();
+  }
   initHeaderScroll();
   initScrollspy();
   initFeatureTabs();

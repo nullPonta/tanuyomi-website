@@ -51,6 +51,16 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css?v=1.1">
   <link rel="stylesheet" href="css/animations.css?v=1.1">
+
+  <!-- Internationalization (i18n) -->
+  <script src="js/i18n.js"></script>
+  <script>
+    // Immediate early language detection & attribute set to prevent flash of untranslated content (FOUT)
+    if (window.TanuyomiI18n) {
+      var initialLang = window.TanuyomiI18n.detectLanguage();
+      document.documentElement.setAttribute('lang', initialLang === 'zh' ? 'zh-CN' : initialLang);
+    }
+  </script>
 </head>
 
 <body>
@@ -64,71 +74,88 @@
   <!-- Header -->
   <header class="site-header">
     <div class="container header-container">
-      <a href="#" class="brand-logo">
-        <img src="assets/icons/logo.svg" alt="Tanuyomi Logo">
-        <span>Tanuyomi</span>
-        <span class="brand-badge">Windows</span>
-      </a>
+      <!-- Upper Row: Brand, Center Actions, and Utility -->
+      <div class="header-top-row">
+        <a href="#" class="brand-logo">
+          <img src="assets/icons/logo.svg" alt="Tanuyomi Logo">
+          <span>Tanuyomi</span>
+          <span class="brand-badge">Windows</span>
+        </a>
 
-      <!-- Pop Button-Style Navigation Menu -->
-      <nav>
+        <!-- Center Actions -->
+        <div class="header-center-actions">
+          <a href="https://ci-en.net/creator/40053" class="btn btn-cien header-cien-btn" target="_blank"
+            rel="noopener noreferrer" aria-label="Ci-en 公式ページ（お問い合わせ・開発進捗）" title="Ci-en 公式ページ（お問い合わせ・開発進捗）">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+            </svg>
+            <span class="cien-text">Ci-en</span>
+          </a>
+          <a href="https://github.com/nullPonta/tanuyomi-release" class="btn btn-github header-github-btn" target="_blank"
+            rel="noopener noreferrer" aria-label="GitHub Repository" title="GitHub リポジトリ">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+            <span class="github-text">GitHub</span>
+          </a>
+          <a href="#download" class="btn btn-primary header-download-btn">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+            </svg>
+            <span data-i18n="nav.download">ダウンロード</span>
+          </a>
+        </div>
+
+        <!-- Right Utility: Language Switcher -->
+        <div class="header-utility">
+          <div class="lang-switcher">
+            <span class="lang-switcher-icon" aria-hidden="true">🌐</span>
+            <select class="lang-switcher-select" data-i18n-aria="langSelect.ariaLabel" aria-label="言語を選択">
+              <option value="ja">日本語</option>
+              <option value="en">English</option>
+              <option value="zh">简体中文</option>
+            </select>
+            <span class="lang-switcher-arrow" aria-hidden="true">▾</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lower Row: Navigation Menu -->
+      <nav class="header-nav-row">
         <ul class="nav-menu">
           <li>
             <a href="#highlights" class="nav-pill-btn">
               <span class="pill-icon">✨</span>
-              <span class="pill-text">特徴</span>
+              <span class="pill-text" data-i18n="nav.highlights">特徴</span>
             </a>
           </li>
           <li>
             <a href="#devices" class="nav-pill-btn">
               <span class="pill-icon">📱</span>
-              <span class="pill-text">スマホ<br class="pill-br">連携</span>
+              <span class="pill-text" data-i18n="nav.devices">スマホ連携</span>
             </a>
           </li>
           <li>
             <a href="#features" class="nav-pill-btn">
               <span class="pill-icon">📖</span>
-              <span class="pill-text">機能<br class="pill-br">紹介</span>
+              <span class="pill-text" data-i18n="nav.features">機能紹介</span>
             </a>
           </li>
           <li>
             <a href="#formats" class="nav-pill-btn">
               <span class="pill-icon">📦</span>
-              <span class="pill-text">対応<br class="pill-br">形式</span>
+              <span class="pill-text" data-i18n="nav.formats">対応形式</span>
             </a>
           </li>
           <li>
             <a href="#faq" class="nav-pill-btn">
               <span class="pill-icon">❓</span>
-              <span class="pill-text">Q&amp;A</span>
+              <span class="pill-text" data-i18n="nav.faq">Q&A</span>
             </a>
           </li>
         </ul>
       </nav>
-
-      <div class="header-actions">
-        <a href="https://ci-en.net/creator/40053" class="btn btn-cien header-cien-btn" target="_blank"
-          rel="noopener noreferrer" aria-label="Ci-en 公式ページ（お問い合わせ・開発進捗）" title="Ci-en 公式ページ（お問い合わせ・開発進捗）">
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
-          </svg>
-          <span class="cien-text">Ci-en</span>
-        </a>
-        <a href="https://github.com/nullPonta/tanuyomi-release" class="btn btn-github header-github-btn" target="_blank"
-          rel="noopener noreferrer" aria-label="GitHub Repository" title="GitHub リポジトリ">
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-          </svg>
-          <span class="github-text">GitHub</span>
-        </a>
-        <a href="#download" class="btn btn-primary header-download-btn">
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
-          </svg>
-          <span>ダウンロード</span>
-        </a>
-      </div>
     </div>
   </header>
 
@@ -136,15 +163,15 @@
   <section class="hero-section">
     <div class="container hero-content">
       <div class="hero-badge fade-in-element">
-        <span class="section-tag">🍃 インストール不要・解凍してすぐ動く</span>
+        <span class="section-tag" data-i18n="hero.badge">🍃 インストール不要・解凍してすぐ動く</span>
       </div>
 
-      <h1 class="hero-title fade-in-element delay-100">
+      <h1 class="hero-title fade-in-element delay-100" data-i18n-html="hero.title">
         <span class="phrase">PCでも、</span><span class="phrase">スマホやタブレットでも。</span><br class="br-pc">
         <span class="gradient-text"><span class="phrase">お気に入りの作品を</span><span class="phrase">どこでも心地よく。</span></span>
       </h1>
 
-      <p class="hero-description fade-in-element delay-200 text-pretty">
+      <p class="hero-description fade-in-element delay-200 text-pretty" data-i18n-html="hero.description">
         <span class="phrase">Tanuyomi（たぬヨミ）は、</span><span class="phrase">PCに保存してある大容量の漫画書庫や動画を</span><br class="br-pc">
         <span class="phrase">かんたんに楽しめるメディアサーバー＆ビューワーです。</span><br class="br-pc">
         <span class="phrase">PC本体での閲覧はもちろん、</span><span class="phrase">同一Wi-Fi内なら</span><span
@@ -156,17 +183,17 @@
           <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
           </svg>
-          <span class="phrase">Windows版を無料ダウンロード</span>
+          <span class="phrase" data-i18n="hero.ctaDownload">Windows版を無料ダウンロード</span>
         </a>
         <a href="#devices" class="btn btn-secondary btn-lg">
-          <span class="phrase">📱 スマホでの使い方を見る</span>
+          <span class="phrase" data-i18n="hero.ctaDevices">📱 スマホでの使い方を見る</span>
         </a>
       </div>
 
       <div class="hero-meta-info fade-in-element delay-400">
-        <span class="hero-meta-item"><span class="phrase">📱 スマホ・タブレットはアプリ不要（ブラウザだけ）</span></span>
-        <span class="hero-meta-item"><span class="phrase">✨ 単一実行ファイル（SQLite・各種ツール同梱）</span></span>
-        <span class="hero-meta-item"><span class="phrase">💻 Windows 10 / 11 対応</span></span>
+        <span class="hero-meta-item"><span class="phrase" data-i18n="hero.metaDevices">📱 スマホ・タブレットはアプリ不要（ブラウザだけ）</span></span>
+        <span class="hero-meta-item"><span class="phrase" data-i18n="hero.metaPortable">✨ 単一実行ファイル（SQLite・各種ツール同梱）</span></span>
+        <span class="hero-meta-item"><span class="phrase" data-i18n="hero.metaOs">💻 Windows 10 / 11 対応</span></span>
       </div>
 
       <!-- Hero Visual / Real App UI Mockup -->
@@ -178,7 +205,7 @@
               <div class="window-dot yellow"></div>
               <div class="window-dot green"></div>
             </div>
-            <div class="window-title">Tanuyomi - ライブラリ探索</div>
+            <div class="window-title" data-i18n="mock.windowTitle">Tanuyomi - ライブラリ探索</div>
             <div class="window-controls">
               <span class="ctrl-btn">─</span>
               <span class="ctrl-btn">□</span>
@@ -189,42 +216,42 @@
             <div class="app-ui-layout">
               <!-- App Sidebar -->
               <aside class="app-sidebar">
-                <div class="sidebar-section-title">ライブラリ</div>
+                <div class="sidebar-section-title" data-i18n="mock.libraryTitle">ライブラリ</div>
                 <div class="sidebar-nav-item active">
                   <span class="sb-icon">✨</span>
-                  <span class="sb-label">最近追加</span>
+                  <span class="sb-label" data-i18n="mock.recentAdded">最近追加</span>
                   <span class="sb-badge">24</span>
                 </div>
                 <div class="sidebar-nav-item">
                   <span class="sb-icon">📖</span>
-                  <span class="sb-label">続きから読む</span>
+                  <span class="sb-label" data-i18n="mock.continueReading">続きから読む</span>
                 </div>
                 <div class="sidebar-nav-item">
                   <span class="sb-icon">⭐</span>
-                  <span class="sb-label">お気に入り</span>
+                  <span class="sb-label" data-i18n="mock.favorites">お気に入り</span>
                   <span class="sb-badge">12</span>
                 </div>
                 <div class="sidebar-nav-item">
                   <span class="sb-icon">🎲</span>
-                  <span class="sb-label">ランダム</span>
+                  <span class="sb-label" data-i18n="mock.random">ランダム</span>
                 </div>
-                <div class="sidebar-section-title" style="margin-top: 14px;">フォルダ</div>
+                <div class="sidebar-section-title" style="margin-top: 14px;" data-i18n="mock.foldersTitle">フォルダ</div>
                 <div class="sidebar-nav-item">
                   <span class="sb-icon">📁</span>
-                  <span class="sb-label">マンガ・単行本</span>
-                </div>
-                <div class="sidebar-nav-item">
-                  <span class="sb-icon">📁</span>
-                  <span class="sb-label">イラスト画集</span>
+                  <span class="sb-label" data-i18n="mock.folderManga">マンガ・単行本</span>
                 </div>
                 <div class="sidebar-nav-item">
                   <span class="sb-icon">📁</span>
-                  <span class="sb-label">動画コレクション</span>
+                  <span class="sb-label" data-i18n="mock.folderArt">イラスト画集</span>
+                </div>
+                <div class="sidebar-nav-item">
+                  <span class="sb-icon">📁</span>
+                  <span class="sb-label" data-i18n="mock.folderVideo">動画コレクション</span>
                 </div>
 
                 <div class="sidebar-bottom-status">
                   <span class="status-indicator"></span>
-                  <span>ライブラリ: 同期完了</span>
+                  <span data-i18n="mock.syncDone">ライブラリ: 同期完了</span>
                 </div>
               </aside>
 
@@ -233,13 +260,13 @@
                 <!-- App Toolbar -->
                 <div class="app-toolbar">
                   <div class="toolbar-breadcrumbs">
-                    <span class="bc-item">🏠 ホーム</span>
+                    <span class="bc-item" data-i18n="mock.breadcrumbHome">🏠 ホーム</span>
                     <span class="bc-sep">/</span>
-                    <span class="bc-item bc-active">マンガ・単行本</span>
+                    <span class="bc-item bc-active" data-i18n="mock.breadcrumbActive">マンガ・単行本</span>
                   </div>
                   <div class="toolbar-actions">
                     <div class="mini-search-box">
-                      <span>🔍</span> <span>検索...</span>
+                      <span>🔍</span> <span data-i18n="mock.searchPlaceholder">検索...</span>
                     </div>
                     <div class="view-toggle-btns">
                       <span class="vt-btn active">⊞</span>
@@ -256,13 +283,13 @@
                       <span class="format-pill zip">ZIP</span>
                       <span class="page-count-pill">184P</span>
                       <div class="thumb-inner-art">
-                        <div class="art-title">森の小さな<br>魔法使い</div>
+                        <div class="art-title" data-i18n-html="mock.card1ArtTitle">森の小さな<br>魔法使い</div>
                         <div class="art-vol">Vol.01</div>
                       </div>
                     </div>
                     <div class="card-meta">
-                      <div class="card-title">森の小さな魔法使い_第01巻.zip</div>
-                      <div class="card-sub">24.5 MB ｜ 2時間前に閲覧</div>
+                      <div class="card-title" data-i18n="mock.card1Title">森の小さな魔法使い_第01巻.zip</div>
+                      <div class="card-sub" data-i18n="mock.card1Sub">24.5 MB ｜ 2時間前に閲覧</div>
                     </div>
                   </div>
 
@@ -277,8 +304,8 @@
                       </div>
                     </div>
                     <div class="card-meta">
-                      <div class="card-title">週末キャンプ記録_星空撮影.mp4</div>
-                      <div class="card-sub">1.4 GB ｜ 100サムネイル生成済</div>
+                      <div class="card-title" data-i18n="mock.card2Title">週末キャンプ記録_星空撮影.mp4</div>
+                      <div class="card-sub" data-i18n="mock.card2Sub">1.4 GB ｜ 100サムネイル生成済</div>
                     </div>
                   </div>
 
@@ -288,12 +315,12 @@
                       <span class="format-pill pdf">PDF</span>
                       <span class="page-count-pill">64P</span>
                       <div class="thumb-inner-art pdf-art">
-                        <div class="art-title">コンセプトアート<br>作品集 2026</div>
+                        <div class="art-title" data-i18n-html="mock.card3ArtTitle">コンセプトアート<br>作品集 2026</div>
                       </div>
                     </div>
                     <div class="card-meta">
-                      <div class="card-title">コンセプトアート作品集_v2.pdf</div>
-                      <div class="card-sub">88.2 MB ｜ 高画質展開対応</div>
+                      <div class="card-title" data-i18n="mock.card3Title">コンセプトアート作品集_v2.pdf</div>
+                      <div class="card-sub" data-i18n="mock.card3Sub">88.2 MB ｜ 高画質展開対応</div>
                     </div>
                   </div>
 
@@ -303,13 +330,13 @@
                       <span class="format-pill cbz">CBZ</span>
                       <span class="page-count-pill">210P</span>
                       <div class="thumb-inner-art cbz-art">
-                        <div class="art-title">タヌキの里山<br>探検記</div>
+                        <div class="art-title" data-i18n-html="mock.card4ArtTitle">タヌキの里山<br>探検記</div>
                         <div class="art-vol">Vol.02</div>
                       </div>
                     </div>
                     <div class="card-meta">
-                      <div class="card-title">タヌキの里山探検記_第02巻.cbz</div>
-                      <div class="card-sub">32.8 MB ｜ 見開き対応</div>
+                      <div class="card-title" data-i18n="mock.card4Title">タヌキの里山探検記_第02巻.cbz</div>
+                      <div class="card-sub" data-i18n="mock.card4Sub">32.8 MB ｜ 見開き対応</div>
                     </div>
                   </div>
                 </div>
@@ -326,11 +353,11 @@
   <section id="highlights" class="section">
     <div class="container">
       <div class="text-center fade-in-element">
-        <span class="section-tag">Highlights</span>
-        <h2 class="section-title">
+        <span class="section-tag" data-i18n="highlights.tag">Highlights</span>
+        <h2 class="section-title" data-i18n-html="highlights.title">
           <span class="phrase">Tanuyomi が選ばれる</span><span class="phrase"> 4 つの魅力</span>
         </h2>
-        <p class="section-subtitle">
+        <p class="section-subtitle" data-i18n-html="highlights.subtitle">
           <span class="phrase">誰でもかんたんに使えて、</span><span class="phrase">おうちのどこからでも快適に楽しめる設計です。</span>
         </p>
       </div>
@@ -339,11 +366,11 @@
         <!-- Pillar 1 -->
         <div class="pillar-card fade-in-element">
           <div class="pillar-icon-box icon-green">📱</div>
-          <h3 class="pillar-title">
+          <h3 class="pillar-title" data-i18n-html="highlights.card1Title">
             <span class="phrase">スマホ・タブレットも</span><br>
             <span class="phrase">ブラウザだけで即閲覧</span>
           </h3>
-          <p class="pillar-desc">
+          <p class="pillar-desc" data-i18n="highlights.card1Desc">
             アプリの追加インストールは不要。同じWi-Fiにつないだスマホやタブレットから、ブラウザでアクセスするだけでベッドやソファからでも楽しめます。
           </p>
         </div>
@@ -351,11 +378,11 @@
         <!-- Pillar 2 -->
         <div class="pillar-card fade-in-element delay-100">
           <div class="pillar-icon-box icon-gold">📦</div>
-          <h3 class="pillar-title">
+          <h3 class="pillar-title" data-i18n-html="highlights.card2Title">
             <span class="phrase">解凍不要で</span><br>
             <span class="phrase">そのまま閲覧</span>
           </h3>
-          <p class="pillar-desc">
+          <p class="pillar-desc" data-i18n="highlights.card2Desc">
             ZIP, CBZ, PDF などの書庫を解凍せずに直接オープン。ディスク容量を節約しながら、読みたいときにすぐ読めます。
           </p>
         </div>
@@ -363,11 +390,11 @@
         <!-- Pillar 3 -->
         <div class="pillar-card fade-in-element delay-200">
           <div class="pillar-icon-box icon-orange">⚡</div>
-          <h3 class="pillar-title">
+          <h3 class="pillar-title" data-i18n-html="highlights.card3Title">
             <span class="phrase">待たせない</span><br>
             <span class="phrase">爆速プレビュー</span>
           </h3>
-          <p class="pillar-desc">
+          <p class="pillar-desc" data-i18n="highlights.card3Desc">
             独自のスマートキャッシュにより、膨大なライブラリでもサムネイルやページを瞬時に描画。テンポ良く快適に作品を選べます。
           </p>
         </div>
@@ -375,11 +402,11 @@
         <!-- Pillar 4 -->
         <div class="pillar-card fade-in-element delay-300">
           <div class="pillar-icon-box icon-red">🎬</div>
-          <h3 class="pillar-title">
+          <h3 class="pillar-title" data-i18n-html="highlights.card4Title">
             <span class="phrase">動画の</span><br>
             <span class="phrase">100サムネイル一覧</span>
           </h3>
-          <p class="pillar-desc">
+          <p class="pillar-desc" data-i18n="highlights.card4Desc">
             あらかじめ生成された100枚のサムネイル一覧から、見たい場面へ即ジャンプ。長時間の動画も快適にシークできます。
           </p>
         </div>
@@ -392,11 +419,11 @@
     style="background: linear-gradient(180deg, rgba(34, 29, 40, 0.6) 0%, rgba(24, 21, 29, 0.8) 100%);">
     <div class="container">
       <div class="text-center fade-in-element">
-        <span class="section-tag">Cross-Device</span>
-        <h2 class="section-title">
+        <span class="section-tag" data-i18n="devices.tag">Cross-Device</span>
+        <h2 class="section-title" data-i18n-html="devices.title">
           <span class="phrase">おうちのWi-Fiでつながる、</span><span class="phrase">自由な鑑賞スタイル</span>
         </h2>
-        <p class="section-subtitle">
+        <p class="section-subtitle" data-i18n-html="devices.subtitle">
           <span class="phrase">PCを母艦にして起動しておくだけ。</span><span class="phrase">専用アプリを入れなくても、手元の端末ですぐ開けます。</span>
         </p>
       </div>
@@ -421,17 +448,17 @@
               <div class="sync-mini-item item-cbz"><span class="smi-badge">CBZ</span><span class="smi-icon">🖼️</span>
               </div>
             </div>
-            <div class="sync-badge-label">💻 PC母艦（バックグラウンド常駐）</div>
+            <div class="sync-badge-label" data-i18n="devices.pcBadge">💻 PC母艦（バックグラウンド常駐）</div>
           </div>
         </div>
 
         <div class="sync-connection-bridge">
           <div class="wifi-pulse-icon">📶</div>
-          <div class="wifi-label">同一Wi-Fi</div>
+          <div class="wifi-label" data-i18n="devices.wifiLabel">同一Wi-Fi</div>
           <div class="wifi-line">
             <span class="pulse-dot"></span>
           </div>
-          <div class="wifi-sublabel">専用アプリ不要・ブラウザ直結</div>
+          <div class="wifi-sublabel" data-i18n="devices.wifiSublabel">専用アプリ不要・ブラウザ直結</div>
         </div>
 
         <div class="sync-device-phone">
@@ -455,7 +482,7 @@
                 </div>
               </div>
             </div>
-            <div class="sync-badge-label">📱 スマホ（Safari / Chrome）</div>
+            <div class="sync-badge-label" data-i18n="devices.phoneBadge">📱 スマホ（Safari / Chrome）</div>
           </div>
         </div>
       </div>
@@ -463,18 +490,18 @@
       <div class="steps-grid fade-in-element">
         <div class="step-card">
           <div style="font-size: 2rem; margin-bottom: 12px;">💻</div>
-          <h4 class="step-title"><span class="phrase">1. PCで Tanuyomi を起動</span></h4>
-          <p class="step-desc"><span class="phrase">Windows PCで実行ファイルを開くだけで、メディアサーバーとして準備が整います。</span></p>
+          <h4 class="step-title" data-i18n="devices.step1Title"><span class="phrase">1. PCで Tanuyomi を起動</span></h4>
+          <p class="step-desc" data-i18n="devices.step1Desc"><span class="phrase">Windows PCで実行ファイルを開くだけで、メディアサーバーとして準備が整います。</span></p>
         </div>
         <div class="step-card">
           <div style="font-size: 2rem; margin-bottom: 12px;">📶</div>
-          <h4 class="step-title"><span class="phrase">2. 同一Wi-Fiに接続</span></h4>
-          <p class="step-desc"><span class="phrase">スマホやタブレットを、ご自宅の同じWi-Fi（ルーター）につなぎます。</span></p>
+          <h4 class="step-title" data-i18n="devices.step2Title"><span class="phrase">2. 同一Wi-Fiに接続</span></h4>
+          <p class="step-desc" data-i18n="devices.step2Desc"><span class="phrase">スマホやタブレットを、ご自宅の同じWi-Fi（ルーター）につなぎます。</span></p>
         </div>
         <div class="step-card">
           <div style="font-size: 2rem; margin-bottom: 12px;">📱</div>
-          <h4 class="step-title"><span class="phrase">3. ブラウザでアクセス</span></h4>
-          <p class="step-desc"><span class="phrase">Safari や Chrome などのブラウザからURLを開くだけで、すぐに漫画や動画を楽しめます。</span></p>
+          <h4 class="step-title" data-i18n="devices.step3Title"><span class="phrase">3. ブラウザでアクセス</span></h4>
+          <p class="step-desc" data-i18n="devices.step3Desc"><span class="phrase">Safari や Chrome などのブラウザからURLを開くだけで、すぐに漫画や動画を楽しめます。</span></p>
         </div>
       </div>
     </div>
@@ -484,49 +511,49 @@
   <section id="features" class="section">
     <div class="container">
       <div class="text-center fade-in-element">
-        <span class="section-tag">Showcase</span>
-        <h2 class="section-title">
+        <span class="section-tag" data-i18n="features.tag">Showcase</span>
+        <h2 class="section-title" data-i18n-html="features.title">
           <span class="phrase">多彩なメディアを</span><span class="phrase">直感的な操作感で</span>
         </h2>
-        <p class="section-subtitle">
+        <p class="section-subtitle" data-i18n-html="features.subtitle">
           <span class="phrase">ビューワー、プレイヤー、ファイラーが</span><span class="phrase">ひとつのアプリに心地よくまとまっています。</span>
         </p>
       </div>
 
       <!-- Tab Navigation -->
       <div class="feature-tabs-nav fade-in-element">
-        <button class="tab-btn active" data-tab="viewer">📖 漫画・画像ビューワー</button>
-        <button class="tab-btn" data-tab="video">🎥 動画プレイヤー</button>
-        <button class="tab-btn" data-tab="filer">📁 ファイル管理 &amp; ZIP</button>
-        <button class="tab-btn" data-tab="compress">🗜️ 動画圧縮</button>
+        <button class="tab-btn active" data-tab="viewer" data-i18n-html="features.tabViewer">📖 漫画・画像ビューワー</button>
+        <button class="tab-btn" data-tab="video" data-i18n-html="features.tabVideo">🎥 動画プレイヤー</button>
+        <button class="tab-btn" data-tab="filer" data-i18n-html="features.tabFiler">📁 ファイル管理 &amp; ZIP</button>
+        <button class="tab-btn" data-tab="compress" data-i18n-html="features.tabCompress">🗜️ 動画圧縮</button>
       </div>
 
       <!-- Tab 1: Viewer -->
       <div class="tab-content-panel active" data-panel="viewer">
         <div class="feature-info">
-          <h3 class="feature-info-title">
+          <h3 class="feature-info-title" data-i18n-html="features.viewerTitle">
             <span class="phrase">見開き・回転・ページ送りを</span><br class="br-pc">
             <span class="phrase">自由自在に</span>
           </h3>
-          <p class="feature-info-desc">
+          <p class="feature-info-desc" data-i18n="features.viewerDesc">
             右開き・左開き表示はもちろん、90度回転やサムネイル一覧ドロワーからのページジャンプなど、読書に必要な機能がキーボードやスマホの画面タッチでスムーズに操作できます。
           </p>
           <ul class="feature-checklist">
-            <li><span class="check-icon">✔</span> <span class="phrase">単ページ ＆ 見開き（右開き・左開き）の瞬時切替</span></li>
-            <li><span class="check-icon">✔</span> <span class="phrase">快適なショートカットキー ＆ タッチスワイプ操作</span></li>
-            <li><span class="check-icon">✔</span> <span class="phrase">ZIPやPDF内の画像も端末のメモリを圧迫せず高速展開</span></li>
+            <li><span class="check-icon">✔</span> <span class="phrase" data-i18n="features.viewerCheck1">単ページ ＆ 見開き（右開き・左開き）の瞬時切替</span></li>
+            <li><span class="check-icon">✔</span> <span class="phrase" data-i18n="features.viewerCheck2">快適なショートカットキー ＆ タッチスワイプ操作</span></li>
+            <li><span class="check-icon">✔</span> <span class="phrase" data-i18n="features.viewerCheck3">ZIPやPDF内の画像も端末のメモリを圧迫せず高速展開</span></li>
           </ul>
         </div>
         <div class="feature-visual-box">
           <div class="feature-visual-header">
             <span>Tanuyomi Manga Viewer Mode</span>
-            <span class="fv-badge">見開き表示</span>
+            <span class="fv-badge" data-i18n="features.viewerSpread">見開き表示</span>
           </div>
           <div class="fv-manga-container">
             <div class="fv-manga-topbar">
-              <span class="fv-tb-btn active">📖 見開き</span>
-              <span class="fv-tb-btn">🔄 回転</span>
-              <span class="fv-tb-btn">⛶ 全画面</span>
+              <span class="fv-tb-btn active" data-i18n="features.viewerBtnSpread">📖 見開き</span>
+              <span class="fv-tb-btn" data-i18n="features.viewerBtnRotate">🔄 回転</span>
+              <span class="fv-tb-btn" data-i18n="features.viewerBtnFullscreen">⛶ 全画面</span>
               <span class="fv-tb-info">P. 42-43 / 184</span>
             </div>
             <div class="fv-manga-canvas">
@@ -553,23 +580,23 @@
       <!-- Tab 2: Video -->
       <div class="tab-content-panel" data-panel="video">
         <div class="feature-info">
-          <h3 class="feature-info-title">
+          <h3 class="feature-info-title" data-i18n-html="features.videoTitle">
             <span class="phrase">100サムネイル一覧で</span><br class="br-pc">
             <span class="phrase">狙った場面へ即ジャンプ</span>
           </h3>
-          <p class="feature-info-desc">
+          <p class="feature-info-desc" data-i18n="features.videoDesc">
             長時間の動画でも、あらかじめ用意された100枚のサムネイル一覧から気になる瞬間へ一瞬で移動できます。ブラウザでそのまま快適に再生可能です。
           </p>
           <ul class="feature-checklist">
-            <li><span class="check-icon">✔</span> <span class="phrase">100枚のサムネイル一覧による視覚的な高速シーク</span></li>
-            <li><span class="check-icon">✔</span> <span class="phrase">ブラウザ標準対応フォーマットによる軽快な再生</span></li>
-            <li><span class="check-icon">✔</span> <span class="phrase">倍速再生（0.5x 〜 2.0x）や全画面再生に対応</span></li>
+            <li><span class="check-icon">✔</span> <span class="phrase" data-i18n="features.videoCheck1">100枚のサムネイル一覧による視覚的な高速シーク</span></li>
+            <li><span class="check-icon">✔</span> <span class="phrase" data-i18n="features.videoCheck2">ブラウザ標準対応フォーマットによる軽快な再生</span></li>
+            <li><span class="check-icon">✔</span> <span class="phrase" data-i18n="features.videoCheck3">倍速再生（0.5x 〜 2.0x）や全画面再生に対応</span></li>
           </ul>
         </div>
         <div class="feature-visual-box">
           <div class="feature-visual-header">
             <span>Tanuyomi Video Player Mode</span>
-            <span class="fv-badge">100サムネイル</span>
+            <span class="fv-badge" data-i18n="features.videoBadge">100サムネイル</span>
           </div>
           <div class="fv-video-container">
             <div class="fv-video-screen">
@@ -578,8 +605,8 @@
               <div class="fv-video-speed-tag">1.0x ▾</div>
             </div>
             <div class="fv-scenes-bar-label">
-              <span>🎞️ 100シーン・サムネイルシークバー</span>
-              <span class="fv-seek-hint">ホバーで瞬時にプレビュー</span>
+              <span data-i18n="features.videoBarLabel">🎞️ 100シーン・サムネイルシークバー</span>
+              <span class="fv-seek-hint" data-i18n="features.videoSeekHint">ホバーで瞬時にプレビュー</span>
             </div>
             <div class="fv-scenes-filmstrip">
               <div class="film-frame f1"></div>
@@ -599,45 +626,45 @@
       <!-- Tab 3: Filer / ZIP Management -->
       <div class="tab-content-panel" data-panel="filer">
         <div class="feature-info">
-          <h3 class="feature-info-title">
+          <h3 class="feature-info-title" data-i18n-html="features.filerTitle">
             <span class="phrase">ZIPアーカイブの整理や</span><br class="br-pc">
             <span class="phrase">書庫化も思いのままに</span>
           </h3>
-          <p class="feature-info-desc">
+          <p class="feature-info-desc" data-i18n="features.filerDesc">
             鑑賞するだけでなく、ライブラリの整頓もTanuyomiにおまかせ。PDFから高画質画像を抽出して扱いやすいZIP書庫に変換したり、アーカイブの整理をバックグラウンドで安全に行えます。
           </p>
           <ul class="feature-checklist">
-            <li><span class="check-icon">✔</span> <span class="phrase">PDF からの高画質画像抽出 ＆ ZIP書庫化</span></li>
-            <li><span class="check-icon">✔</span> <span class="phrase">ライブラリ内のZIPアーカイブ整理・管理</span></li>
-            <li><span class="check-icon">✔</span> <span class="phrase">閲覧を妨げないバックグラウンド処理</span></li>
+            <li><span class="check-icon">✔</span> <span class="phrase" data-i18n="features.filerCheck1">PDF からの高画質画像抽出 ＆ ZIP書庫化</span></li>
+            <li><span class="check-icon">✔</span> <span class="phrase" data-i18n="features.filerCheck2">ライブラリ内のZIPアーカイブ整理・管理</span></li>
+            <li><span class="check-icon">✔</span> <span class="phrase" data-i18n="features.filerCheck3">閲覧を妨げないバックグラウンド処理</span></li>
           </ul>
         </div>
         <div class="feature-visual-box">
           <div class="feature-visual-header">
             <span>Tanuyomi Filer &amp; ZIP Archive</span>
-            <span class="fv-badge green">ファイラーモード</span>
+            <span class="fv-badge green" data-i18n="features.filerBadge">ファイラーモード</span>
           </div>
           <div class="fv-filer-container">
             <div class="fv-filer-tree">
               <div class="filer-row folder">
-                <span class="fr-icon">📂</span> <span>ライブラリ / PDF資料集</span>
+                <span class="fr-icon">📂</span> <span data-i18n="features.filerFolder">ライブラリ / PDF資料集</span>
               </div>
               <div class="filer-row file-pdf">
                 <span class="fr-icon">📄</span>
-                <span class="fr-name">デザイン設定資料集_高精細.pdf</span>
-                <span class="fr-action-btn">⚡ ZIP書庫化</span>
+                <span class="fr-name" data-i18n="features.filerPdfName">デザイン設定資料集_高精細.pdf</span>
+                <span class="fr-action-btn" data-i18n="features.filerBtnZip">⚡ ZIP書庫化</span>
               </div>
               <div class="filer-row file-zip active">
                 <span class="fr-icon">📦</span>
-                <span class="fr-name">デザイン設定資料集_高精細.zip</span>
-                <span class="fr-tag">生成完了</span>
+                <span class="fr-name" data-i18n="features.filerZipName">デザイン設定資料集_高精細.zip</span>
+                <span class="fr-tag" data-i18n="features.filerZipDone">生成完了</span>
               </div>
             </div>
             <div class="fv-filer-job-toast">
               <span class="job-check">✔</span>
               <div class="job-info">
-                <strong>PDF画像抽出 完了</strong>
-                <span>64枚の画像を最高画質で抽出し、ZIP書庫を作成しました</span>
+                <strong data-i18n="features.filerToastTitle">PDF画像抽出 完了</strong>
+                <span data-i18n="features.filerToastDesc">64枚の画像を最高画質で抽出し、ZIP書庫を作成しました</span>
               </div>
             </div>
           </div>
@@ -647,49 +674,49 @@
       <!-- Tab 4: Video Compression -->
       <div class="tab-content-panel" data-panel="compress">
         <div class="feature-info">
-          <h3 class="feature-info-title">
+          <h3 class="feature-info-title" data-i18n-html="features.compressTitle">
             <span class="phrase">大容量動画を</span><br class="br-pc">
             <span class="phrase">高画質のままスマートに圧縮</span>
           </h3>
-          <p class="feature-info-desc">
+          <p class="feature-info-desc" data-i18n="features.compressDesc">
             ディスク容量を圧迫しがちな動画ファイルを、画質を保ちながら効率的に軽量化。バックグラウンドジョブとして実行できるため、鑑賞の合間にまとめて省容量化できます。
           </p>
           <ul class="feature-checklist">
-            <li><span class="check-icon">✔</span> <span class="phrase">画質をキープした効率的な動画圧縮・軽量化</span></li>
-            <li><span class="check-icon">✔</span> <span class="phrase">バックグラウンドでのジョブキュー管理</span></li>
-            <li><span class="check-icon">✔</span> <span class="phrase">ストレージ容量の節約と快適な管理を両立</span></li>
+            <li><span class="check-icon">✔</span> <span class="phrase" data-i18n="features.compressCheck1">画質をキープした効率的な動画圧縮・軽量化</span></li>
+            <li><span class="check-icon">✔</span> <span class="phrase" data-i18n="features.compressCheck2">バックグラウンドでのジョブキュー管理</span></li>
+            <li><span class="check-icon">✔</span> <span class="phrase" data-i18n="features.compressCheck3">ストレージ容量の節約と快適な管理を両立</span></li>
           </ul>
         </div>
         <div class="feature-visual-box">
           <div class="feature-visual-header">
             <span>Tanuyomi Video Compression Job</span>
-            <span class="fv-badge orange">省容量化</span>
+            <span class="fv-badge orange" data-i18n="features.compressBadge">省容量化</span>
           </div>
           <div class="fv-compress-container">
             <div class="fv-job-card">
               <div class="fv-job-title-row">
                 <span class="job-file-icon">🎬</span>
                 <span class="job-filename">4K_ドローン空撮_生データ.mov</span>
-                <span class="job-status-pill">変換中 68%</span>
+                <span class="job-status-pill" data-i18n="features.compressJobStatus">変換中 68%</span>
               </div>
               <div class="fv-progress-track">
                 <div class="fv-progress-bar" style="width: 68%;"></div>
               </div>
               <div class="fv-compression-stats">
                 <div class="stat-col">
-                  <span class="stat-label">元サイズ</span>
+                  <span class="stat-label" data-i18n="features.compressOriginal">元サイズ</span>
                   <span class="stat-val original">4.8 GB</span>
                 </div>
                 <div class="stat-col arrow">➔</div>
                 <div class="stat-col">
-                  <span class="stat-label">圧縮後予測</span>
+                  <span class="stat-label" data-i18n="features.compressPredicted">圧縮後予測</span>
                   <span class="stat-val compressed">1.2 GB</span>
                 </div>
-                <div class="stat-badge-reduction">-75% 削減</div>
+                <div class="stat-badge-reduction" data-i18n="features.compressReduction">-75% 削減</div>
               </div>
             </div>
             <div class="fv-compress-footer">
-              <span>⚙️ ハードウェア支援: NVENC (GPU) 高速モード</span>
+              <span data-i18n="features.compressFooter">⚙️ ハードウェア支援: NVENC (GPU) 高速モード</span>
             </div>
           </div>
         </div>
@@ -702,11 +729,11 @@
   <section id="formats" class="section">
     <div class="container">
       <div class="text-center fade-in-element">
-        <span class="section-tag">Formats</span>
-        <h2 class="section-title">
+        <span class="section-tag" data-i18n="formats.tag">Formats</span>
+        <h2 class="section-title" data-i18n-html="formats.title">
           <span class="phrase">幅広いフォーマットに</span><span class="phrase">標準対応</span>
         </h2>
-        <p class="section-subtitle">
+        <p class="section-subtitle" data-i18n-html="formats.subtitle">
           <span class="phrase">追加のコーデックや外部ツールの導入は不要。</span><span class="phrase">すべてアプリ本体に同梱されています。</span>
         </p>
       </div>
@@ -714,7 +741,7 @@
       <div class="specs-container fade-in-element">
         <!-- Card 1: Books & Archives -->
         <div class="spec-category-card">
-          <h3 class="spec-category-title">📚 書庫・ドキュメント</h3>
+          <h3 class="spec-category-title" data-i18n-html="formats.categoryBooks">📚 書庫・ドキュメント</h3>
           <div class="format-tags">
             <span class="format-tag highlight">.zip</span>
             <span class="format-tag highlight">.cbz</span>
@@ -724,7 +751,7 @@
 
         <!-- Card 2: Images -->
         <div class="spec-category-card">
-          <h3 class="spec-category-title">🖼️ 画像フォーマット</h3>
+          <h3 class="spec-category-title" data-i18n-html="formats.categoryImages">🖼️ 画像フォーマット</h3>
           <div class="format-tags">
             <span class="format-tag highlight">.jpg / .jpeg</span>
             <span class="format-tag highlight">.png</span>
@@ -737,7 +764,7 @@
 
         <!-- Card 3: Videos -->
         <div class="spec-category-card">
-          <h3 class="spec-category-title">🎬 動画・映像フォーマット</h3>
+          <h3 class="spec-category-title" data-i18n-html="formats.categoryVideos">🎬 動画・映像フォーマット</h3>
           <div class="format-tags">
             <span class="format-tag highlight">.mp4</span>
             <span class="format-tag highlight">.mkv</span>
@@ -759,12 +786,12 @@
     <div class="container">
       <div class="download-box fade-in-element">
         <span class="section-tag"
-          style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff;">Get
+          style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #fff;" data-i18n="download.tag">Get
           Started</span>
-        <h2 class="download-title">
+        <h2 class="download-title" data-i18n-html="download.title">
           <span class="phrase">今すぐ Tanuyomi で</span><span class="phrase">心地よいメディア体験を</span>
         </h2>
-        <p class="download-desc">
+        <p class="download-desc" data-i18n-html="download.desc">
           <span class="phrase">面倒なインストールや初期設定は不要です。</span><br class="br-pc">
           <span class="phrase">ZIPを解凍して実行するだけで、</span><span class="phrase">すぐにお手元のライブラリが開きます。</span>
         </p>
@@ -775,16 +802,16 @@
             <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
               <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
             </svg>
-            <span class="phrase">Tanuyomi for Windows を無料ダウンロード (v0.1.0-beta.1)</span>
+            <span class="phrase" data-i18n="download.btnDownload">Tanuyomi for Windows を無料ダウンロード (v0.1.0-beta.1)</span>
           </a>
           <div style="margin-top: 12px;">
             <a href="https://github.com/nullPonta/tanuyomi-release/releases" class="download-sub-link" target="_blank"
               rel="noopener noreferrer">
-              <span>すべてのリリース・更新履歴・Linux版はこちら（GitHub Releases）➔</span>
+              <span data-i18n="download.subLink">すべてのリリース・更新履歴・Linux版はこちら（GitHub Releases）➔</span>
             </a>
           </div>
         </div>
-        <p style="margin-top: 16px; color: var(--text-subtle); font-size: 0.88rem;">
+        <p style="margin-top: 16px; color: var(--text-subtle); font-size: 0.88rem;" data-i18n-html="download.metaInfo">
           <span class="phrase">対応OS: Windows 10 / 11 (64bit)</span> ｜ <span class="phrase">ポータブルZIP形式（約140MB）</span> ｜
           <span class="phrase">完全無料・オープンソース</span>
         </p>
@@ -793,18 +820,18 @@
         <div class="steps-grid">
           <div class="step-card">
             <span class="step-number">01</span>
-            <h4 class="step-title"><span class="phrase">ダウンロード</span></h4>
-            <p class="step-desc"><span class="phrase">配布ZIPファイルを</span><span class="phrase">ダウンロードします。</span></p>
+            <h4 class="step-title" data-i18n="download.step1Title"><span class="phrase">ダウンロード</span></h4>
+            <p class="step-desc" data-i18n-html="download.step1Desc"><span class="phrase">配布ZIPファイルを</span><span class="phrase">ダウンロードします。</span></p>
           </div>
           <div class="step-card">
             <span class="step-number">02</span>
-            <h4 class="step-title"><span class="phrase">お好きな場所に解凍</span></h4>
-            <p class="step-desc"><span class="phrase">レジストリを変更せず、</span><span class="phrase">フォルダ移動も自由です。</span></p>
+            <h4 class="step-title" data-i18n="download.step2Title"><span class="phrase">お好きな場所に解凍</span></h4>
+            <p class="step-desc" data-i18n-html="download.step2Desc"><span class="phrase">レジストリを変更せず、</span><span class="phrase">フォルダ移動も自由です。</span></p>
           </div>
           <div class="step-card">
             <span class="step-number">03</span>
-            <h4 class="step-title"><span class="phrase">tanuyomi.exe を実行</span></h4>
-            <p class="step-desc"><span class="phrase">PCやスマホのブラウザですぐ鑑賞できます。</span></p>
+            <h4 class="step-title" data-i18n="download.step3Title"><span class="phrase">tanuyomi.exe を実行</span></h4>
+            <p class="step-desc" data-i18n-html="download.step3Desc"><span class="phrase">PCやスマホのブラウザですぐ鑑賞できます。</span></p>
           </div>
         </div>
       </div>
@@ -815,11 +842,11 @@
   <section id="faq" class="section">
     <div class="container">
       <div class="text-center fade-in-element">
-        <span class="section-tag">FAQ</span>
-        <h2 class="section-title">
+        <span class="section-tag" data-i18n="faq.tag">FAQ</span>
+        <h2 class="section-title" data-i18n-html="faq.title">
           <span class="phrase">よくある質問</span>
         </h2>
-        <p class="section-subtitle">
+        <p class="section-subtitle" data-i18n-html="faq.subtitle">
           <span class="phrase">気になる点や疑問について</span><span class="phrase">お答えします。</span>
         </p>
       </div>
@@ -827,10 +854,10 @@
       <div class="faq-list fade-in-element">
         <div class="faq-item">
           <button class="faq-question">
-            <span class="phrase">スマホやタブレットで見るためにアプリのインストールは必要ですか？</span>
+            <span class="phrase" data-i18n="faq.q1">スマホやタブレットで見るためにアプリのインストールは必要ですか？</span>
             <span class="faq-toggle-icon">+</span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" data-i18n-html="faq.a1">
             いいえ、アプリのインストールは一切不要です。iPhone、iPad、Android端末などの標準ブラウザ（Safari や Chrome
             等）からアクセスするだけで、見開き閲覧や動画ストリーミング再生をそのままご利用いただけます。
           </div>
@@ -838,10 +865,10 @@
 
         <div class="faq-item">
           <button class="faq-question">
-            <span class="phrase">面倒なインストールや環境設定は必要ですか？</span>
+            <span class="phrase" data-i18n="faq.q2">面倒なインストールや環境設定は必要ですか？</span>
             <span class="faq-toggle-icon">+</span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" data-i18n-html="faq.a2">
             いいえ、一切不要です。必要なデータベース（SQLite）や各種変換ツール（FFmpeg, Poppler, BPGデコーダー等）はすべて同梱されていますので、解凍して
             <code>tanuyomi.exe</code> を起動するだけですぐにお使いいただけます。
           </div>
@@ -849,10 +876,10 @@
 
         <div class="faq-item">
           <button class="faq-question">
-            <span class="phrase">同一Wi-Fiでスマホからつなぐにはどうすればいいですか？</span>
+            <span class="phrase" data-i18n="faq.q3">同一Wi-Fiでスマホからつなぐにはどうすればいいですか？</span>
             <span class="faq-toggle-icon">+</span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" data-i18n-html="faq.a3">
             Tanuyomi を起動しているPCと同じ自宅Wi-Fiにスマホを接続し、スマホのブラウザのアドレスバーに「PCのローカルIPアドレス:ポート番号」（例:
             <code>http://192.168.1.10:5000</code>）を入力するだけですぐにライブラリが開きます。
           </div>
@@ -860,20 +887,20 @@
 
         <div class="faq-item">
           <button class="faq-question">
-            <span class="phrase">動画の再生やシークは軽快に動きますか？</span>
+            <span class="phrase" data-i18n="faq.q4">動画の再生やシークは軽快に動きますか？</span>
             <span class="faq-toggle-icon">+</span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" data-i18n-html="faq.a4">
             はい。100コマのシーンサムネイルがあらかじめ用意されているため、動画全体を読み込み直すことなく、見たい位置へ直感的にシークしてスムーズに再生できます。
           </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-question">
-            <span class="phrase">質問や不具合報告、要望、問い合わせはどこから行えばいいですか？</span>
+            <span class="phrase" data-i18n="faq.q5">質問や不具合報告、要望、問い合わせはどこから行えばいいですか？</span>
             <span class="faq-toggle-icon">+</span>
           </button>
-          <div class="faq-answer">
+          <div class="faq-answer" data-i18n-html="faq.a5">
             ご質問・不具合のご報告・機能追加のご要望や各種お問い合わせは、公式 <a href="https://ci-en.net/creator/40053" target="_blank" rel="noopener noreferrer" style="color: var(--primary-light); text-decoration: underline;">Ci-en クリエイターページ</a> のメッセージ機能または最新記事のコメント欄より受け付けております。お気軽にご連絡ください。開発状況や最新の更新情報も Ci-en で随時発信しています。
           </div>
         </div>
@@ -886,11 +913,11 @@
     <div class="container">
       <div class="contact-box fade-in-element">
         <div class="contact-content">
-          <span class="section-tag" style="background: rgba(230, 138, 60, 0.15); border-color: rgba(230, 138, 60, 0.3); color: var(--primary-light);">Support &amp; Community</span>
-          <h2 class="contact-title">
+          <span class="section-tag" style="background: rgba(230, 138, 60, 0.15); border-color: rgba(230, 138, 60, 0.3); color: var(--primary-light);" data-i18n-html="contact.tag">Support &amp; Community</span>
+          <h2 class="contact-title" data-i18n-html="contact.title">
             <span class="phrase">お問い合わせ・ご意見・</span><span class="phrase">不具合のご報告</span>
           </h2>
-          <p class="contact-desc">
+          <p class="contact-desc" data-i18n-html="contact.desc">
             <span class="phrase">Tanuyomi をご利用いただきありがとうございます。</span><br class="br-pc">
             <span class="phrase">機能のご要望や不具合報告、各種お問い合わせは、</span><span class="phrase">公式 <strong>Ci-en</strong> クリエイターページにて受け付けております。</span><br class="br-pc">
             <span class="phrase">開発の進捗報告やアップデート情報も順次発信していますので、</span><span class="phrase">ぜひお気軽にフォローやメッセージをお寄せください！</span>
@@ -900,11 +927,11 @@
               <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
               </svg>
-              <span>公式 Ci-en ページでお問い合わせ・応援する ➔</span>
+              <span data-i18n="contact.btnCta">公式 Ci-en ページでお問い合わせ・応援する ➔</span>
             </a>
           </div>
           <p class="contact-note">
-            <span>※ ご質問・ご相談は Ci-en のメッセージ機能または最新記事のコメント欄よりお送りいただけます。</span>
+            <span data-i18n="contact.note">※ ご質問・ご相談は Ci-en のメッセージ機能または最新記事のコメント欄よりお送りいただけます。</span>
           </p>
         </div>
       </div>
@@ -920,38 +947,38 @@
             <img src="assets/icons/logo.svg" alt="Tanuyomi Logo">
             <span>Tanuyomi</span>
           </a>
-          <p class="footer-brand-desc">
+          <p class="footer-brand-desc" data-i18n-html="footer.brandDesc">
             <span class="phrase">大容量メディアライブラリのための、</span><br>
             <span class="phrase">軽快でかんたんに使えるメディアサーバー＆ビューワー。</span>
           </p>
         </div>
 
         <div>
-          <h4 class="footer-col-title">ナビゲーション</h4>
+          <h4 class="footer-col-title" data-i18n="footer.colNav">ナビゲーション</h4>
           <ul class="footer-links">
-            <li><a href="#highlights" class="footer-link">特徴</a></li>
-            <li><a href="#devices" class="footer-link">スマホ・タブレット連携</a></li>
-            <li><a href="#features" class="footer-link">機能一覧</a></li>
-            <li><a href="#formats" class="footer-link">対応フォーマット</a></li>
-            <li><a href="#download" class="footer-link">ダウンロード</a></li>
-            <li><a href="#contact" class="footer-link">お問い合わせ</a></li>
+            <li><a href="#highlights" class="footer-link" data-i18n="footer.linkHighlights">特徴</a></li>
+            <li><a href="#devices" class="footer-link" data-i18n="footer.linkDevices">スマホ・タブレット連携</a></li>
+            <li><a href="#features" class="footer-link" data-i18n="footer.linkFeatures">機能一覧</a></li>
+            <li><a href="#formats" class="footer-link" data-i18n="footer.linkFormats">対応フォーマット</a></li>
+            <li><a href="#download" class="footer-link" data-i18n="footer.linkDownload">ダウンロード</a></li>
+            <li><a href="#contact" class="footer-link" data-i18n="footer.linkContact">お問い合わせ</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="footer-col-title">サポート &amp; コミュニティ</h4>
+          <h4 class="footer-col-title" data-i18n-html="footer.colSupport">サポート &amp; コミュニティ</h4>
           <ul class="footer-links">
-            <li><a href="https://ci-en.net/creator/40053" class="footer-link" target="_blank" rel="noopener noreferrer">お問い合わせ・最新情報（Ci-en） ↗</a></li>
-            <li><a href="https://github.com/nullPonta/tanuyomi-release" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub リポジトリ ↗</a></li>
-            <li><a href="#faq" class="footer-link">よくある質問 (FAQ)</a></li>
-            <li><a href="#formats" class="footer-link">動作環境・形式</a></li>
+            <li><a href="https://ci-en.net/creator/40053" class="footer-link" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkCien">お問い合わせ・最新情報（Ci-en） ↗</a></li>
+            <li><a href="https://github.com/nullPonta/tanuyomi-release" class="footer-link" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkGithub">GitHub リポジトリ ↗</a></li>
+            <li><a href="#faq" class="footer-link" data-i18n="footer.linkFaq">よくある質問 (FAQ)</a></li>
+            <li><a href="#formats" class="footer-link" data-i18n="footer.linkEnv">動作環境・形式</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
         <div>&copy; 2026 Tanuyomi Project. All rights reserved.</div>
-        <div>Built for gentle & easy cross-device media browsing.</div>
+        <div data-i18n="footer.bottomNotice">Built for gentle & easy cross-device media browsing.</div>
       </div>
     </div>
   </footer>
