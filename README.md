@@ -46,6 +46,7 @@ website/
 │   ├── style.css           # デザイン・レイアウト・タイポグラフィ
 │   └── animations.css      # マイクロアニメーション・キーフレーム
 ├── js/
+│   ├── i18n.js             # 多言語対応（日・英・中）
 │   └── main.js             # UI制御（ナビゲーション、FAQ開閉等）
 ├── assets/
 │   ├── icons/              # ロゴ、ファビコン（SVG）
