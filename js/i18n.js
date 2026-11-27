@@ -33,6 +33,7 @@ const TRANSLATIONS = {
       metaOs: '💻 Windows 10 / 11 対応'
     },
     mock: {
+      tryHint: 'クリックしてUIをプチ体験',
       windowTitle: 'Tanuyomi - ライブラリ探索',
       libraryTitle: 'ライブラリ',
       recentAdded: '最近追加',
@@ -172,7 +173,7 @@ const TRANSLATIONS = {
       q4: '動画の再生やシークは軽快に動きますか？',
       a4: 'はい。100コマのシーンサムネイルがあらかじめ用意されているため、動画全体を読み込み直すことなく、見たい位置へ直感的にシークしてスムーズに再生できます。',
       q5: '質問や不具合報告、要望、問い合わせはどこから行えばいいですか？',
-      a5: 'ご質問・不具合のご報告・機能追加のご要望や各種お問い合わせは、公式 <a href="https://ci-en.net/creator/40053" target="_blank" rel="noopener noreferrer" style="color: var(--primary-light); text-decoration: underline;">Ci-en クリエイターページ</a> のメッセージ機能または最新記事のコメント欄より受け付けております。お気軽にご連絡ください。開発状況や最新の更新情報も Ci-en で随時発信しています。'
+      a5: 'ご質問・不具合のご報告・機能追加のご要望や各種お問い合わせは、公式 <a href="https://ci-en.net/creator/40053" target="_blank" rel="noopener noreferrer" class="faq-inline-link">Ci-en クリエイターページ</a> のメッセージ機能または最新記事のコメント欄より受け付けております。お気軽にご連絡ください。開発状況や最新の更新情報も Ci-en で随時発信しています。'
     },
     contact: {
       tag: 'Support &amp; Community',
@@ -230,6 +231,7 @@ const TRANSLATIONS = {
       metaOs: '💻 Windows 10 / 11 Compatible'
     },
     mock: {
+      tryHint: 'Click to preview the UI',
       windowTitle: 'Tanuyomi - Library Explorer',
       libraryTitle: 'LIBRARY',
       recentAdded: 'Recently Added',
@@ -369,7 +371,7 @@ const TRANSLATIONS = {
       q4: 'Does video playback and seeking perform smoothly?',
       a4: 'Yes! Tanuyomi pre-generates a 100-thumbnail filmstrip for each video, allowing you to visually scrub and jump to the exact scene you want without reloading the entire stream.',
       q5: 'Where can I ask questions, report bugs, or submit feature requests?',
-      a5: 'For questions, bug reports, feature requests, and feedback, please visit our official <a href="https://ci-en.net/creator/40053" target="_blank" rel="noopener noreferrer" style="color: var(--primary-light); text-decoration: underline;">Ci-en Creator Page</a> via messages or comments. We regularly publish development progress and release updates there!'
+      a5: 'For questions, bug reports, feature requests, and feedback, please visit our official <a href="https://ci-en.net/creator/40053" target="_blank" rel="noopener noreferrer" class="faq-inline-link">Ci-en Creator Page</a> via messages or comments. We regularly publish development progress and release updates there!'
     },
     contact: {
       tag: 'Support &amp; Community',
@@ -427,6 +429,7 @@ const TRANSLATIONS = {
       metaOs: '💻 支持 Windows 10 / 11 系统'
     },
     mock: {
+      tryHint: '点击体验界面预览',
       windowTitle: 'Tanuyomi - 媒体库探索',
       libraryTitle: '媒体库',
       recentAdded: '最近添加',
@@ -566,7 +569,7 @@ const TRANSLATIONS = {
       q4: '长视频的播放和时间轴跳转足够流畅吗？',
       a4: '是的！Tanuyomi 在入库时会自动为视频提取 100 张全片关键帧缩略图，在拖动进度条时可直接对照缩略图快速精准寻帧，无需重新全量缓冲等待。',
       q5: '如何反馈意见、提交 Bug 或提出新功能建议？',
-      a5: '如有任何疑问、使用反馈、问题报告或功能建议，欢迎前往官方 <a href="https://ci-en.net/creator/40053" target="_blank" rel="noopener noreferrer" style="color: var(--primary-light); text-decoration: underline;">Ci-en 创作者页面</a> 发送站内私信或在最新日志留言交流。最新的开发进展与版本动态也会同步在 Ci-en 持续更新发布。'
+      a5: '如有任何疑问、使用反馈、问题报告或功能建议，欢迎前往官方 <a href="https://ci-en.net/creator/40053" target="_blank" rel="noopener noreferrer" class="faq-inline-link">Ci-en 创作者页面</a> 发送站内私信或在最新日志留言交流。最新的开发进展与版本动态也会同步在 Ci-en 持续更新发布。'
     },
     contact: {
       tag: 'Support &amp; Community',
